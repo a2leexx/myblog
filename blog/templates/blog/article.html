@@ -1,0 +1,10 @@
+{% extends "./base.html" %}
+
+{% block content %}
+    {{ html_text | safe }}
+    <p>
+    {% for t in tags %}
+        <a href="/tags/{{t.tag_id}}/" class="btn btn-primary btn-sm" role="button">{{t.tag_name}}</a>
+    {% endfor %}
+    </p>
+{% endblock %}

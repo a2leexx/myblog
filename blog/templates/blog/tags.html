@@ -1,0 +1,23 @@
+{% extends "./index.html" %}
+
+{% block content %}
+    {% if page|length > 0 %}
+        <h1 class="text-muted">Все статьи с тегом "{{ tag_name }}"</h1>
+        
+        {% block prev_page %}
+            {{ block.super }}
+        {% endblock %}
+        
+        {% block articles %}
+            {{ block.super }}
+        {% endblock %}
+
+        {% block next_page %}
+            {{ block.super }}
+        {% endblock %}
+    {% else %}
+        <h1>:(</h1>
+        <p>Статей с тегом "{{tag_name}}" пока нет</p>
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends "./base.html" %}
+
+{% block content %}
+    <h1 class="my-4">Все теги</h1>
+
+    {% for t in tags %}
+        <a href="/tags/{{t.tag_id}}/" class="btn btn-primary btn-sm my-1" role="button">{{t.tag_name}}</a>
+    {% endfor %}
+
+{% endblock %}

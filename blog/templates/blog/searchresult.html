@@ -1,0 +1,23 @@
+{% extends "./index.html" %}
+
+{% block content %}
+    {% if page|length > 0 %}
+        {% if page.has_previous %}
+            <a href="?{{ search_urlencoded }}&page={{ page.previous_page_number }}">&lt; Смотреть предыдущую страницу</a>
+        {% endif %}
+        
+        <h1>Результаты поиска "{{ search_str }}"</h1>
+        
+        {% block articles %}
+            {{ block.super }}
+        {% endblock %}
+        
+        {% if page.has_next %}
+            <a href="?{{ search_urlencoded }}&page={{ page.next_page_number }}">Смотреть следующую страницу &gt;</a>
+        {% endif %}
+    {% else %}
+        <h1>:(</h1>
+        <p>По запросу "{{ search_str }}" ничего не найдено</p>
+    {% endif %}
+
+{% endblock %}

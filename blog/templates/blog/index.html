@@ -1,0 +1,40 @@
+{% extends "./base.html" %}
+
+{% block content %}
+    {% block prev_page %}
+        {% if page.has_previous %}
+            <nav>
+                <a href="?page={{ page.previous_page_number }}">&lt; Смотреть предыдущую страницу</a>
+            </nav>
+        {% endif %}
+    {% endblock %}
+
+    {% if page|length > 0 %}
+        {% block articles %}
+            {% for a in page %}
+                <article class="my-5">
+                    {{ a.preview_html | safe }}
+                    <p>
+                        <a href="/articles/{{ a.article_id }}">Перейти</a>
+                    </p>
+                    <p>
+                        {% for t in a.tags.all %}
+                            <a href="/tags/{{t.tag_id}}/" class="btn btn-primary btn-sm my-1" role="button">{{t.tag_name}}</a>
+                        {% endfor %}
+                    </p>
+                </article>
+            {% endfor %}
+        {% endblock %}
+    {% else %}
+        <h1>:(</h1>
+        <p>Нет опубликованных статей</p>
+    {% endif %}
+
+    {% block next_page %}
+        {% if page.has_next %}
+            <nav>
+                <a href="?page={{ page.next_page_number }}">Смотреть следующую страницу &gt;</a>
+            </nav>
+        {% endif %}
+    {% endblock %}
+{% endblock %}
